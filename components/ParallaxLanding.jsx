@@ -6,14 +6,9 @@ import { motion } from 'framer-motion';
 
 export default function ParallaxLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [email, setEmail] = useState('');
-  const [showModal, setShowModal] = useState(false);
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    alert(`Welcome! Check your email at ${email} for the app download link!`);
-    setEmail('');
-    setShowModal(false);
+  const handleGetStarted = () => {
+    window.location.href = 'https://forms.gle/1RGWt11TZvV34Uc5A';
   };
 
   return (
@@ -33,7 +28,7 @@ export default function ParallaxLanding() {
             <a href="#features" className="hover:text-cyan-400 transition">Features</a>
             <a href="#app" className="hover:text-cyan-400 transition">App Demo</a>
             <button
-              onClick={() => setShowModal(true)}
+              onClick={handleGetStarted}
               className="bg-cyan-500 hover:bg-cyan-600 px-6 py-2 rounded-lg transition font-semibold"
             >
               Get App
@@ -88,7 +83,7 @@ export default function ParallaxLanding() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            onClick={() => setShowModal(true)}
+            onClick={handleGetStarted}
             className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 px-10 py-4 rounded-lg text-lg font-bold transition transform hover:scale-105 inline-flex items-center gap-2"
           >
             Download Now
@@ -192,7 +187,7 @@ export default function ParallaxLanding() {
                 Download the mobile app now to get full access to all features!
               </p>
               <button
-                onClick={() => setShowModal(true)}
+                onClick={handleGetStarted}
                 className="bg-cyan-500 hover:bg-cyan-600 px-8 py-3 rounded-lg font-bold transition inline-flex items-center gap-2"
               >
                 Download App
@@ -218,7 +213,7 @@ export default function ParallaxLanding() {
             Join thousands of travelers discovering new connections during layovers
           </p>
           <button
-            onClick={() => setShowModal(true)}
+            onClick={handleGetStarted}
             className="bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 px-12 py-4 rounded-lg text-lg font-bold transition transform hover:scale-105"
           >
             Get Started Now
@@ -234,48 +229,7 @@ export default function ParallaxLanding() {
         </p>
       </footer>
 
-      {/* SIGNUP MODAL */}
-      {showModal && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="bg-gradient-to-br from-slate-800 to-slate-900 border border-cyan-500/50 rounded-2xl p-8 max-w-md w-full"
-          >
-            <h2 className="text-3xl font-bold mb-6">Get the App</h2>
-            <form onSubmit={handleSignup}>
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full bg-slate-700 border border-cyan-500/30 rounded-lg px-4 py-3 mb-6 focus:outline-none focus:border-cyan-500 transition"
-              />
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 px-6 py-3 rounded-lg font-bold transition mb-4"
-              >
-                Send Download Link
-              </button>
-              <button
-                type="button"
-                onClick={() => setShowModal(false)}
-                className="w-full bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg font-bold transition"
-              >
-                Close
-              </button>
-            </form>
-            <p className="text-gray-400 text-sm mt-4 text-center">
-              We'll email you the Google Play download link instantly!
-            </p>
-          </motion.div>
-        </motion.div>
-      )}
+
     </div>
   );
 }
